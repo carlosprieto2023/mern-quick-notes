@@ -46,6 +46,7 @@ export default function LoginForm({ setUser }) {
             value={credentials.password}
             onChange={handleChange}
             required
+            autoComplete="current-password"
           />
           <button type="submit">LOG IN</button>
         </form>

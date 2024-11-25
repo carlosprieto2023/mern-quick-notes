@@ -20,18 +20,25 @@ export function logOut() {
 }
 
 export function getToken() {
-  // get Item returns null if there's no string
+  // Get the token from localStorage
   const token = localStorage.getItem('token');
-  if (!token) return null;
-  // Obtain the payload of the token
-  const payload = JSON.parse(atob(token.split('.')[1]));
-  // A JWT's exp is expressed on seconds. no milliseconds, so convert
-  if (payload.exp < Date.now() / 1000) {
-    // Token has expired - remove it from localStorage
-    localStorage.removeItem('token');
+  if (!token) return null; // Return null if no token is found
+
+  try {
+    // Decode the payload of the token
+    const payload = JSON.parse(atob(token.split('.')[1]));
+
+    // Check if token is expired
+    if (payload.exp < Date.now() / 1000) {
+      localStorage.removeItem('token'); // Remove expired token
+      return null;
+    }
+    return token; // Token is valid, return it
+  } catch (err) {
+    console.error('Invalid token format:', err);
+    localStorage.removeItem('token'); // Remove invalid token
     return null;
   }
-  return token;
 }
 
 export function getUser() {
