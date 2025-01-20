@@ -1,0 +1,29 @@
+/* HomePage Layout */
+.home-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.home-page-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Global dark mode styles */
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+/* Local dark mode styles for HomePage */
+.home-page.dark-mode {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+}
+
+.home-page {
+  background-color: #ffffff;
+  color: #000000;
+}

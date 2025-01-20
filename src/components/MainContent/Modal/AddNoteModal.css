@@ -1,0 +1,156 @@
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Ensure it appears above other elements */
+}
+
+/* Modal Container */
+.modal {
+  background-color: #ffffff;
+  padding: 2rem;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  position: relative;
+  transition: background-color 0.3s, color 0.3s; /* Transition for dark mode */
+}
+
+/* Dark Mode Modal Container */
+.modal.dark-mode {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+/* Modal Title */
+.modal h3 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #333333;
+}
+
+.modal.dark-mode h3 {
+  color: #ffffff; /* Title color in dark mode */
+}
+
+/* Modal Textarea */
+.modal textarea {
+  display: block;
+  width: 100%;
+  height: 100px;
+  padding: 0.8rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  resize: none;
+  box-sizing: border-box; /* Include padding in width/height calculation */
+  transition: border-color 0.2s;
+}
+
+.modal textarea:focus {
+  border-color: #0077ff;
+  outline: none;
+}
+
+.modal.dark-mode textarea {
+  background-color: #555555; /* Dark background for textarea */
+  color: #ffffff; /* White text color for dark mode */
+  border-color: #888888; /* Lighter border color in dark mode */
+}
+
+.modal textarea:focus {
+  border-color: #0077ff;
+}
+
+.modal.dark-mode textarea:focus {
+  border-color: #0077ff; /* Keep focus border consistent */
+}
+
+/* Modal Dropdown (Select) */
+.modal select {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  background-color: #ffffff;
+  transition: border-color 0.2s;
+}
+
+.modal.dark-mode select {
+  background-color: #555555; /* Dark background for select */
+  color: #ffffff; /* White text in dark mode */
+  border-color: #888888; /* Lighter border color in dark mode */
+}
+
+/* Modal Actions */
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* Buttons */
+.modal-actions button {
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.modal-actions button:first-child {
+  background-color: #0077ff;
+  color: #ffffff;
+}
+
+.modal-actions button:first-child:hover {
+  background-color: #005bb5;
+}
+
+.modal-actions button:first-child:active {
+  transform: scale(0.98);
+}
+
+.modal-actions button:last-child {
+  background-color: #cccccc;
+  color: #333333;
+}
+
+.modal-actions button:last-child:hover {
+  background-color: #b3b3b3;
+}
+
+.modal-actions button:last-child:active {
+  transform: scale(0.98);
+}
+
+/* Dark Mode Buttons */
+.modal.dark-mode .modal-actions button:first-child {
+  background-color: #0077ff;
+}
+
+.modal.dark-mode .modal-actions button:last-child {
+  background-color: #444444;
+  color: #ffffff;
+}
+
+.modal.dark-mode .modal-actions button:last-child:hover {
+  background-color: #555555;
+}
+
+.modal.dark-mode .modal-actions button:last-child:active {
+  transform: scale(0.98);
+}

@@ -1,37 +1,35 @@
-const Note = require('../../models/Note');
+const Note = require('../../models/note');
 
 module.exports = {
   create,
   getAll,
   delete: deleteNote,
+  update,
 };
 
 // Create a new note
 async function create(req, res) {
   try {
-    // Check if req.user is set
     if (!req.user || !req.user._id) {
       return res
         .status(401)
         .json({ error: 'Unauthorized: User not logged in' });
     }
 
-    // Validate request body
-    if (!req.body.content || req.body.content.trim() === '') {
+    const { content, category } = req.body;
+    if (!content || content.trim() === '') {
       return res.status(400).json({ error: 'Note content cannot be empty' });
     }
 
-    console.log('Request body:', req.body); // Debugging
-    console.log('User ID:', req.user._id); // Check user authentication
-
     const note = await Note.create({
-      content: req.body.content.trim(), // Remove extra spaces
-      user: req.user._id, // Associate with logged-in user
+      content: content.trim(),
+      category: category || 'General',
+      user: req.user._id,
     });
 
-    res.status(201).json(note); // Respond with the newly created note
+    res.status(201).json(note);
   } catch (err) {
-    console.error('Error creating note:', err); // Log full error
+    console.error('Error creating note:', err);
     res
       .status(500)
       .json({ error: 'Failed to create note', details: err.message });
@@ -41,17 +39,20 @@ async function create(req, res) {
 // Get all notes for the logged-in user
 async function getAll(req, res) {
   try {
-    // Check if req.user is set
+    // Check if req.user is set (ensure user is authenticated)
     if (!req.user || !req.user._id) {
       return res
         .status(401)
         .json({ error: 'Unauthorized: User not logged in' });
     }
 
-    const notes = await Note.find({ user: req.user._id }); // Find notes for the logged-in user
-    res.json(notes); // Respond with notes
+    // Retrieve all notes for the logged-in user
+    const notes = await Note.find({ user: req.user._id });
+
+    // Respond with the found notes
+    res.json(notes);
   } catch (err) {
-    console.error('Error fetching notes:', err); // Log full error
+    console.error('Error fetching notes:', err); // Log the error
     res
       .status(500)
       .json({ error: 'Failed to fetch notes', details: err.message });
@@ -61,29 +62,64 @@ async function getAll(req, res) {
 // Delete a specific note
 async function deleteNote(req, res) {
   try {
-    // Check if req.user is set
-    if (!req.user || !req.user._id) {
-      return res
-        .status(401)
-        .json({ error: 'Unauthorized: User not logged in' });
-    }
+    console.log('Request Params:', req.params);
+    console.log('Authenticated User:', req.user);
 
-    // Validate note ID
     const { id } = req.params;
     if (!id) {
       return res.status(400).json({ error: 'Note ID is required' });
     }
 
-    const deletedNote = await Note.findByIdAndDelete(id);
+    const deletedNote = await Note.findOneAndDelete({
+      _id: id,
+      user: req.user._id, // Ensure user owns the note
+    });
+
     if (!deletedNote) {
       return res.status(404).json({ error: 'Note not found' });
     }
 
     res.json({ message: 'Note deleted', note: deletedNote });
   } catch (err) {
-    console.error('Error deleting note:', err); // Log full error
+    console.error('Error deleting note:', err);
+    res.status(500).json({ error: 'Failed to delete note' });
+  }
+}
+
+// Update a specific note
+async function update(req, res) {
+  try {
+    const { id } = req.params; // Extract the note ID from the URL
+    const { content, category } = req.body; // Get updated data from the request body
+
+    // Ensure the user is authenticated
+    if (!req.user || !req.user._id) {
+      return res
+        .status(401)
+        .json({ error: 'Unauthorized: User not logged in' });
+    }
+
+    // Ensure the note content is not empty
+    if (!content || content.trim() === '') {
+      return res.status(400).json({ error: 'Note content cannot be empty' });
+    }
+
+    // Find and update the note
+    const updatedNote = await Note.findOneAndUpdate(
+      { _id: id, user: req.user._id }, // Match the note by ID and ownership
+      { content: content.trim(), category }, // Update fields
+      { new: true } // Return the updated document
+    );
+
+    if (!updatedNote) {
+      return res.status(404).json({ error: 'Note not found' });
+    }
+
+    res.json(updatedNote); // Send the updated note as the response
+  } catch (err) {
+    console.error('Error updating note:', err);
     res
       .status(500)
-      .json({ error: 'Failed to delete note', details: err.message });
+      .json({ error: 'Failed to update note', details: err.message });
   }
 }

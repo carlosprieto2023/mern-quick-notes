@@ -1,0 +1,72 @@
+/* SignUpForm Container */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Center content within the container */
+  width: 100%;
+  max-width: 400px;
+  height: auto; /* Adjust height dynamically */
+  padding: 1.5rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box; /* Include padding in dimensions */
+}
+
+/* Form Elements */
+.auth-form form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.5rem; /* Reduce spacing between form elements */
+  max-height: 100%; /* Ensure all form elements fit within the container */
+}
+
+/* Labels */
+.auth-form label {
+  font-size: 0.9rem; /* Slightly smaller font size */
+  color: #333333;
+}
+
+/* Inputs */
+.auth-form input {
+  padding: 0.7rem; /* Slightly smaller padding */
+  font-size: 1rem;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  transition: border-color 0.2s;
+}
+
+.auth-form input:focus {
+  border-color: #0077ff;
+  outline: none;
+}
+
+/* Buttons */
+.auth-form button {
+  padding: 0.7rem 1rem; /* Reduce button padding */
+  font-size: 1rem;
+  background-color: #0077ff;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.auth-form button:hover {
+  background-color: #005bb5;
+}
+
+.auth-form button:active {
+  transform: scale(0.98);
+}
+
+/* Error Message */
+.auth-form .error-message {
+  color: #ff4d4f;
+  font-size: 0.85rem; /* Slightly smaller error text */
+  margin-top: 0.3rem;
+  text-align: center;
+}

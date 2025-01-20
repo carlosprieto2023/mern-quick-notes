@@ -1,0 +1,41 @@
+/* AuthPage Container */
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Full viewport height */
+  background-color: #f3f4f6;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.auth-container h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+  color: #333333;
+}
+
+/* Toggle Button */
+.auth-container .toggle-button {
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  background-color: #e07a5f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.auth-container .toggle-button:hover {
+  background-color: #c96a52;
+}
+
+.auth-container .toggle-button:active {
+  transform: scale(0.98);
+}

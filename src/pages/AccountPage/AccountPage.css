@@ -1,0 +1,59 @@
+/* General styling for the account page */
+.account-page {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Header styling */
+.account-page h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 0.5rem;
+}
+
+/* Account details section */
+.account-details {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.account-details p {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  color: #555;
+}
+
+.account-details strong {
+  color: #333;
+}
+
+/* Dark mode styles */
+.account-page.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.account-page.dark-mode .account-details {
+  background-color: #1e1e1e;
+  border-color: #333;
+}
+
+.account-page.dark-mode .account-details p {
+  color: #e0e0e0;
+}
+
+.account-page.dark-mode .account-details strong {
+  color: #ffffff;
+}

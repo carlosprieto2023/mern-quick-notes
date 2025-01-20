@@ -1,0 +1,30 @@
+/* Add Note Button Container */
+.add-note-container {
+  display: flex;
+  justify-content: flex-end; /* Aligns the button to the right */
+  padding: 1rem; /* Optional: Add some spacing around the container */
+  width: 100%; /* Ensures it spans across the page */
+  box-sizing: border-box; /* Includes padding in width calculation */
+}
+
+/* Add Note Button */
+.add-note-container button {
+  background-color: #0077ff; /* Green button */
+  color: white; /* White text */
+  border: none;
+  border-radius: 5px;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-weight: bold;
+}
+
+.add-note-container button:hover {
+  transform: translateY(-5px);
+  background-color: #005bb5; /* Darker green on hover */
+}
+
+.add-note-button:active {
+  transform: scale(0.95); /* Shrink slightly when clicked */
+}
