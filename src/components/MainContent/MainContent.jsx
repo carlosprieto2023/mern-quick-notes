@@ -70,11 +70,11 @@ export default function MainContent({
   return (
     <div className={`main-content ${preferences.darkMode ? 'dark-mode' : ''}`}>
       <div className={`top-bar ${preferences.darkMode ? 'dark-mode' : ''}`}>
-        <h2>Viewing: {currentCategory || 'Uncategorized'}</h2>
         <AddNoteButton
           className="add-note-button"
           setIsModalOpen={setIsModalOpen}
         />
+        <h2>Viewing: {currentCategory || 'Uncategorized'}</h2>
       </div>
       <NoteList
         notes={notes}

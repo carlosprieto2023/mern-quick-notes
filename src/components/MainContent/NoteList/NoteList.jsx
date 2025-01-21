@@ -52,13 +52,14 @@ export default function NoteList({
             ...noteToUpdate,
             category: 'Deleted',
             originalCategory:
-              noteToUpdate.originalCategory || noteToUpdate.category,
+              noteToUpdate.originalCategory || noteToUpdate.category, // Preserve the original category before deleting
           };
           break;
         case 'recover':
+          // Recover the note to its original category
           updatedNote = {
             ...noteToUpdate,
-            category: noteToUpdate.originalCategory || 'Uncategorized',
+            category: noteToUpdate.originalCategory || 'Uncategorized', // Recover category from originalCategory
           };
           break;
         case 'permanentDelete':
@@ -144,6 +145,16 @@ export default function NoteList({
                     Edit
                   </button>
                 )}
+                {/* Recover Button */}
+                {note.category === 'Deleted' && (
+                  <button
+                    className="recover-button"
+                    onClick={() => handleNoteAction(note.id, 'recover')}
+                  >
+                    Recover
+                  </button>
+                )}
+                {/* Delete Permanently Button */}
                 <button
                   className="delete-button"
                   onClick={() =>
