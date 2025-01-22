@@ -161,11 +161,14 @@ textarea:focus {
   .note-card button {
     font-size: 0.8rem; /* Smaller font size for smaller screens */
     padding: 0.4rem 0.8rem; /* Adjust padding for smaller buttons */
-    flex-basis: calc(50% - 0.5rem); /* Ensure two buttons fit per row */
+    width: 100%;
+    flex-basis: auto; /* Ensure two buttons fit per row */
+    white-space: nowrap;
   }
 
   .note-card .button-container {
     gap: 0.4rem; /* Reduce gap for smaller screens */
+    flex-direction: column;
   }
 }
 
@@ -196,7 +199,10 @@ textarea:focus {
 }
 
 .note-card .delete-permanently-button {
+  font-size: 0.9rem;
   background-color: #b71c1c; /* Dark red for Permanent Delete */
+  white-space: nowrap;
+  text-align: center;
 }
 
 /* Button Hover States */

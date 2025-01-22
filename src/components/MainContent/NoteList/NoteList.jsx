@@ -59,7 +59,8 @@ export default function NoteList({
           // Recover the note to its original category
           updatedNote = {
             ...noteToUpdate,
-            category: noteToUpdate.originalCategory || 'Uncategorized', // Recover category from originalCategory
+            category: noteToUpdate.originalCategory || 'Uncategorized', // Use the originalCategory for recovery
+            originalCategory: null, // Clear the originalCategory after recovery
           };
           break;
         case 'permanentDelete':
